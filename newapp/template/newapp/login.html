@@ -1,0 +1,51 @@
+{% extends 'newapp/basbana.html' %}
+
+{% block title1 %} Login {% endblock title1 %}
+
+{% block content %}
+
+
+  <form method="POST">
+    <div class="row row-cols-1 row-cols-md-3 mb-3">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-light">
+          <div class="card-header py-3 text-bg-light border-light">
+
+            <center><h4 class ="btn btn-success"><strong>Login</strong></h4></center><br>
+
+
+          	{% csrf_token %}
+            {% if message %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <h8>&nbsp;{{message}}</h8> 
+                <i class="fa fa-times fa-2x" style=" color:red;"></i>
+            </div>
+            {% endif %}
+            <div class="form-group">
+              <label for="username">Username:</label><br>
+              <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <br>
+
+            <div class="form-group">
+              <label for="password">Password:</label><br>
+              <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <br>
+
+            <center><button type="submit" class="btn btn-success">Submit</button><br>
+            <a class="py-2 text-primary text-decoration-none " href="{% url 'Register-page' %}">Register |</a>
+            <a class="py-2 text-danger text-decoration-none " href="{% url 'reset-password' %}">Reset Password</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>  
+
+
+
+
+
+
+{% endblock content %}

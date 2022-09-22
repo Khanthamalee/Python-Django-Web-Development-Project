@@ -1,0 +1,64 @@
+{% extends 'newapp/basbana.html' %}
+
+{% block title %} Agriculture-page {% endblock title %}
+
+{% block content %}
+
+<center><button class=" btn btn-warning btn-lg">สินค้าของบ้านสวนนาอุดม</button></center><br>
+
+  {% for row in allrow %}
+    <div class="row row-cols-1 row-cols-md-3 mb-3 ">
+      {% for r in row %}
+      <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border border-warning">
+            {% if r.picture %}
+            <img class="card-image-top border border-warning" src="{{r.picture.url}}" width="293">
+            {% endif  %}
+            <div class="card-header py-3 text-bg-success border border-warning">
+                    <h4 class="my-0 fw-normal"><center>{{r.goods}}</center></h4>
+                  <div class="card-body">
+                    <h5 class="card-title pricing-card-title"><center>ราคา {{r.price}} บาท/กิโลกรัม</center></h5><br>
+                    <button type="button" class="w-100 btn btn-outline-warning">เพิ่มเข้าตระกร้า</button>
+                  </div>
+            </div>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+
+
+<ul class="pagination">
+        
+        {% if allmygoods.has_previous and allmygoods.has_next != True %}
+            <li class="page-item"><a class="page-link" href="?page={{allmygoods.previous_page_number}}"> < </a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allmygoods.number|add:-1}}">{{allmygoods.number|add:-1}}</a></li>
+            <li class="page-item active"><a class="page-link" href="?page={{allmygoods.number}}">{{allmygoods.number}}</a></li>
+        {% endif %}
+
+
+        {% if allmygoods.has_previous and allmygoods.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{allmygoods.previous_page_number}}"> < </a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allmygoods.number|add:-1}}">{{allmygoods.number|add:-1}}</a></li>
+            <li class="page-item active"><a class="page-link" href="?page={{allmygoods.number}}">{{allmygoods.number}}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allmygoods.number|add:1}}">{{allmygoods.number|add:1}}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allmygoods.next_page_number}}"> > </a></li>
+        {% endif %}
+
+        {% if allmygoods.has_next and allmygoods.has_previous != True %}
+            <li class="page-item active"><a class="page-link" href="?page={{allmygoods.number}}">{{allmygoods.number}}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allmygoods.number|add:1}}">{{allmygoods.number|add:1}}</a></li>
+            {% if allmygoods.num_pages > 2 %}
+            <li class="page-item"><a class="page-link" href="?page={{allmygoods.number|add:2}}">{{allmygoods.number|add:2}}</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="?page={{allmygoods.next_page_number}}"> > </a></li>
+        {% endif %} 
+        
+        
+
+     </ul> <p> หน้า {{allmygoods.number}} จาก {{allmygoods.paginator.num_pages}} </p>
+
+</body>
+</html>
+
+{% endblock content %}

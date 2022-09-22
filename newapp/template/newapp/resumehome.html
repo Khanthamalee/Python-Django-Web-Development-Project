@@ -1,0 +1,51 @@
+{% extends 'newapp/resumebase.html' %}
+{% load static %}
+
+{% block title1 %} Homepage {% endblock title1 %}
+
+{% block content %}
+
+      <div class="author-image-large">
+        <img src="{% static 'picture/me7.png' %}" alt="">
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-lg-7">
+            <div class="page-title">
+              <h2>Na-udom <span class="primary">Khanthamalee</span> <span class="title-bg">About</span></h2>
+              <p class="text-dark" >I live in Thailand, Chaiyaphum province. I graduated from Thailand, Khon Kaen province, Khon Kaen University, Faculty of Science, Bachelor of Science Program in Physics. I was Board control operation Turbine Power plant 7(DCS) at Thailand, Prachinburi province, NATIONAL POWER SUPPLY CO.,LT.</p>
+            </div>
+          </div>
+        </div> <!-- /.row -->
+      </div> <!-- /.container -->
+
+  <nav class="page-nav clear">
+  <div class="container">
+    <div class="flex flex-middle space-between">
+      <span class="copyright">Copyright &copy; 2021, Designed &amp; Developed by <a href="{% static 'template/Best Responsive HTML5 Bootstrap Website Templates.html' %}">Themefisher</a>.</span>
+      <span class="next-page"><a href="{% url 'About-page' %} " class="link btn btn-danger">About Me &rarr;</a></span>
+    </div>
+  </div>
+  <!-- /.page-nav -->
+</nav>
+      <!-- /.container -->
+
+    </div> <!-- /.pt-tablecell -->
+  </div> <!-- /.pt-table -->
+</main> <!-- /.site-wrapper -->
+
+
+<!-- 
+Essential Scripts
+=====================================-->
+<script src="{% static 'plugins/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/jquery.nicescroll.min.js' %}"></script>
+<script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+{% endblock content %}

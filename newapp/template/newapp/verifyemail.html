@@ -1,0 +1,39 @@
+{% extends 'newapp/basbana.html' %}
+
+{% block title1 %} verified email {% endblock title1 %}
+
+{% block content %}
+
+
+
+  <form method="POST">
+    <div class="row row-cols-1 row-cols-md-3 mb-3">
+      <div class="col w-100">
+        <div class="card mb-4 rounded-3 shadow-sm border-light">
+          <div class="card-header py-3 text-bg-light border-light">
+
+            
+
+          	{% csrf_token %}
+            {% if error %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <h5>{{error}}</h5>
+              </div>
+            {% else %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert"><h4> You already confirm the member finished.</h4>
+  <pre> Welcome to n.Khanthamalee Website.</pre></div>
+
+            {% endif %}
+
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>  
+
+
+
+
+{% endblock content %}

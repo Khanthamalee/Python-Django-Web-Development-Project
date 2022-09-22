@@ -1,0 +1,72 @@
+{% extends 'newapp/basbana.html' %}
+
+{% block title %} Goods {% endblock title %}
+
+{% block content %}
+
+
+
+    <div class="row row-cols-1 row-cols-md-2 mb-2">
+      <div class="col w-100" >
+        <div class="card mb-3 rounded-2 shadow-sm border-light">
+          <div class="card-header py-4 text-bg-light border-light">
+
+              <center> <!--บอกว่าอยู่ตรงกลาง tag เปิด-->
+                {% for ms in allgoods %}
+                  <h5>{{ms.goods}}</h5>
+
+                  {% if ms.picture %}
+                  <img src="{{ms.picture.url}}" width="270">
+                  {% endif  %}
+                  <br><br>
+
+                  <div class="col w-50" >
+                  <p>
+                    ประโยชน์ : {{ms.description}}<br>
+                    {% if ms.specfile %}
+                    <a href="{{ms.specfile.url}}">รายละเอียดของ{{ms.goods}}เพิ่มเติม</a><br>
+                    {% endif  %}
+                    ราคา : {{ms.price}} บาท/กิโลกรัม<br>
+                    จำนวน : {{ms.quantity}} กิโลกรัม<br>
+                  </p>
+                  <hr>
+                  </div>
+                {% endfor %}
+              </center> <!--บอกว่าอยู่ตรงกลาง tag ปิด-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+<ul class="pagination">
+        
+        {% if allgoods.has_previous and allgoods.has_next != True %}
+            <li class="page-item"><a class="page-link" href="?page={{allgoods.previous_page_number}}"> < </a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allgoods.number|add:-1}}">{{allgoods.number|add:-1}}</a></li>
+            <li class="page-item active"><a class="page-link" href="?page={{allgoods.number}}">{{allgoods.number}}</a></li>
+        {% endif %}
+
+
+        {% if allgoods.has_previous and allgoods.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{allgoods.previous_page_number}}"> < </a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allgoods.number|add:-1}}">{{allgoods.number|add:-1}}</a></li>
+            <li class="page-item active"><a class="page-link" href="?page={{allgoods.number}}">{{allgoods.number}}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allgoods.number|add:1}}">{{allgoods.number|add:1}}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allgoods.next_page_number}}"> > </a></li>
+        {% endif %}
+
+        {% if allgoods.has_next and allgoods.has_previous != True %}
+            <li class="page-item active"><a class="page-link" href="?page={{allgoods.number}}">{{allgoods.number}}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{allgoods.number|add:1}}">{{allgoods.number|add:1}}</a></li>
+            {% if allgoods.num_pages > 2 %}
+            <li class="page-item"><a class="page-link" href="?page={{allgoods.number|add:2}}">{{allgoods.number|add:2}}</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="?page={{allgoods.next_page_number}}"> > </a></li>
+        {% endif %} 
+        
+     </ul> <p> หน้า {{allgoods.number}} จาก {{allgoods.paginator.num_pages}} </p>
+
+</body>
+</html>
+
+{% endblock content %}

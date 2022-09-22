@@ -1,0 +1,42 @@
+{% extends 'newapp/basbana.html' %}
+
+{% block title1 %} Operation of accountant {% endblock title1 %}
+
+{% block content %}
+
+{% if user.profile.usertype == 'accountant' or 'Admin' %}
+  <form method="POST">
+    <div class="row row-cols-1 row-cols-md-3 mb-3">
+      <div class="col w-100 ">
+        <div class="card mb-4 rounded-3 shadow-sm border-light">
+          <div class="card-header py-3 text-bg-light border-light">
+          	{% csrf_token %}
+                  <h5><strong> Topic : {{coordination.title}}</strong>
+                  {% if coordination.complete == True %}
+                      <td><i class="fa fa-check fa-2x" style=" color:green;"></i></td>
+                  {% else %}
+                      <td><i class="fa fa-times fa-2x" style=" color:red;"></i></td>
+                  {% endif %}
+                  </h5><br>
+                  <p><strong>E-mail : </strong>{{coordination.email}}</p>
+                  <p><strong>Description : </strong>{{coordination.detail}} </p>
+
+            <div class="form-group">
+              <label for="detail2"><strong> Operation: </strong></label><br>
+              <textarea class="form-control" rows="10" id="detail2" name="detail2">{{action.actiondetail}}</textarea>
+            </div>
+            <br>
+
+            <center><button type="submit" class="btn btn-primary text-white " name="save">Save</button>&nbsp;&nbsp;
+            <button type="submit" class="btn btn-danger text-white" name="delete">Delete</button>&nbsp;&nbsp;
+            <button type="submit" class="btn btn-success text-white" name="completed">Complete</button></center>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </form> 
+
+{% endif %} 
+
+{% endblock content %}

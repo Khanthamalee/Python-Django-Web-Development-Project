@@ -1,0 +1,91 @@
+{% extends 'newapp/basbana.html' %}
+
+{% block title1 %} Profile {% endblock title1 %}
+
+{% block content %}
+
+
+  <form method="POST">
+  	{% csrf_token %}
+    <div class="row row-cols-1 row-cols-md-2 mb-2">
+      <div class="col" >
+        <div class="card mb-3 rounded-2 shadow-sm border-light">
+          <div class="card-header py-4 text-bg-light border-light">
+        {% if warning %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>{{warning}}</strong> 
+                <i class="fa fa-times fa-2x" style=" color:red;"></i>
+            </div>
+        {% endif %}
+
+          <center><h4><strong class="btn btn-success">Profile</strong></h4></center><br>
+
+          {% if user.profile.verified == False %}
+
+           <p>'Please confirm the member at your email for 100 point'</p><br>
+
+          {% endif %}
+
+              <div class="form-group">
+                <label for="fullname">Fullname :</label><br>
+                <input type="text" class="form-control" id="fullname" name="fullname" value= "{{profile.user.first_name}}" required>
+              </div><br>
+
+              <div class="form-group">
+                <label for="mobile">Phone :</label><br>
+                <input type="tel" class="form-control" id="mobile" name="mobile" value= "{{profile.mobile}}">
+              </div><br>
+
+              <div class="form-group">
+                <label for="username">Email :</label><br>
+                <input type="text" class="form-control" id="username" name="username" value= "{{profile.user.username}}" required>
+              </div><br>
+              <br>
+              <h6><strong>Your point : {{profile.point}} </strong></h6><br>
+
+              <div class="form-check">
+                <label><strong>"What are you like?</strong></label><br>
+                <input class="form-check-input" type="checkbox" value="" id="flexchecDefault">
+                <label class="form-check-label" for="flexchecDefault">
+                vegetable.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexchecchecked">
+                <label class="form-check-label" for="flexchecchecked">
+                Fruit.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexchecchecked">
+                <label class="form-check-label" for="flexchecchecked">
+                Meat.
+                </label>
+            </div>
+
+
+            <div class="form-check">
+              <label><strong>Would you like to recieve information?</strong></label><br>
+              <input class="form-check-input" type="radio" name="flexRediodefault" id="flexRediofault" value="option1" checked>
+              <label class="form-check-label" for="flexRediofault">
+                Yes.
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRediodefault" id="flexRediofault2" value="option1" checked>
+              <label class="form-check-label" for="flexRediofault2">
+                No.
+              </label>
+            </div>
+
+
+            <center><button type="submit" class="btn btn-success">Edit Profile</button></center>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </form>
+
+
+
+{% endblock content %}

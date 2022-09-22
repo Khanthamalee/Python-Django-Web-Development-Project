@@ -1,0 +1,58 @@
+{% extends 'newapp/basbana.html' %}
+
+{% block title1 %} ติดต่อเรา {% endblock title1 %}
+
+{% block content %}
+
+
+  {% if message %}
+
+    <h3>{{message}}</h3>
+
+  {% else %}
+
+  <form method="POST">
+  	{% csrf_token %}
+    <div class="row row-cols-1 row-cols-md-2 mb-2">
+      <div class="col">
+        <div class="card mb-3 rounded-2 shadow-sm border-light">
+          <div class="card-header py-4 text-bg-light border-light">
+
+            <center><h4 class="btn btn-success text-white" ><strong>ติดต่อเรา</strong></h4></center>
+
+            <div class="form-group">
+              <label for="title">หัวข้อเรื่อง :</label>
+              <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <br>
+
+            <div class="form-group">
+              <label for="phone">เบอร์โทรศัพท์:</label>
+              <input type="tel" class="form-control" id="phone" name="phone"placeholder="089-667678"pattern="[0-9]{3}-[0-9]{3}[0-9]{4}">
+            </div>
+            <br>
+
+            <div class="form-group">
+              <label for="email">อีเมลล์ติดต่อ:</label>
+              <input type="text" class="form-control" id="email" name="email">
+            </div>
+            <br>
+
+            <div class="form-group">
+              <label for="detail">รายละเอียด:</label>
+              <textarea class="form-control" rows="5" id="detail" name="detail"></textarea>
+            </div>
+            <br>
+
+            <center><button type="submit" class="btn btn-success">ส่งไปหาแอดมิน</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  {% endif %}
+
+
+
+{% endblock content %}

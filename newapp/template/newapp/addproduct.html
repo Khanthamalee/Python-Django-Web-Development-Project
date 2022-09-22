@@ -1,0 +1,76 @@
+{% extends 'newapp/basbana.html' %}
+
+{% block title %} Adproduct {% endblock title %}
+
+{% block content %}
+
+
+
+  {% if message %}
+
+    <h3>{{message}}</h3>
+
+  {% else %}
+
+{% if user.profile.usertype == 'Admin' or 'accountant' %}
+  <form method="POST" enctype="multipart/form-data">
+  	{% csrf_token %}
+    <div class="row row-cols-1 row-cols-md-2 mb-2">
+      <div class="col w-50" >
+        <div class="card mb-3 rounded-2 shadow-sm border-light">
+          <div class="card-header py-4 text-bg-light border-light">
+
+            <div class="form-group">
+              <label for="goods"><strong>ชื่อสินค้า :</label><br>
+              <input type="text" class="form-control" id="goods" name="goods" required>
+            </div><br>
+
+            <div class="form-group">
+              <label for="description"> รายละเอียดสินค้า : </label><br>
+              <textarea class="form-control" rows="10" id="description" name="description" placeholder="กรอกรายละเอียดสินค้า เช่น สินค้านี้ คือ แหนแดง"></textarea>
+            </div>
+            <br>
+
+            <div class="form-group">
+              <label for="price">ราคา :</label><br>
+              <input type="text" class="form-control" id="price" name="price" required>
+            </div><br>
+
+            <div class="form-group">
+              <label for="quantity">จำนวน :</label><br>
+              <input type="text" class="form-control" id="quantity" name="quantity" required>
+            </div><br>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="instock" id="instock" name="instock">
+                <label class="form-check-label" for="instock">
+                มีในสต๊อคหรือไม่?
+                </label>
+            </div><br>
+
+            <form>
+              <div class="form-group">
+                <label for="picture">รูปภาพสินค้า</label>
+                <input type="file" class="form-control-file" id="picture" name="picture">
+              </div><br>
+
+              <div class="form-group">
+                <label for="specfile">ไฟล์ spec สินค้า</strong></label>
+                <input type="file" class="form-control-file" id="specfile" name="specfile">
+              </div>
+            </form><br>
+            
+            <center><button type="submit" class="btn btn-primary">เพิ่มสินค้า</button></center>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </form>
+
+
+  {% endif %}
+
+{% endif %}
+
+
+{% endblock content %}

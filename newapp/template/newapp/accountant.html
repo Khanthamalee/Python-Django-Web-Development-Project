@@ -1,0 +1,46 @@
+{% extends 'newapp/basbana.html' %}
+
+{% block title %} Accountant {% endblock title %}
+
+{% block content %}
+
+{% if user.profile.usertype == 'accountant' or 'Admin' %}
+
+<center>
+<div class="container">
+  <h4 class="btn btn-warning"><strong>Contact customer</strong></h4><br><br>
+  <center>
+  <table class="table table-bordered ">
+    <thead>
+      <tr>
+        <th >Order</th>
+        <th>Topic</th>
+        <th style="width:13%">Phone</th>
+        <th>Email</th>
+        <th>Description</th>
+        <th>Complete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in contact %}
+      <tr>
+        <th>{{forloop.counter}}</th>
+        <td><a href="{% url 'Action-page' a.id %}">{{a.title}}</a></td>
+        <td>{{a.phone}}</td>
+        <td>{{a.email}}</td>
+        <td>{{a.detail}}</td>
+
+      {% if a.complete == True %}
+        <td><i class="fa fa-check fa-2x" style=" color:green;"></i></td>
+      {% else %}
+        <td><i class="fa fa-times fa-2x" style=" color:red;"></i></td>
+      {% endif %}
+      </tr>
+      {% endfor %} 
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+{% endif %}
+{% endblock content %}
